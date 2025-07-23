@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Tailwind class mappings */
+.login-container {
+  @apply min-h-screen bg-black flex items-center justify-center px-4;
+}
+
+.login-box {
+  @apply bg-white rounded-2xl shadow-lg w-full max-w-md p-8;
+}
+
+.login-title {
+  @apply text-2xl font-bold text-center text-black mb-6;
+}
+
+.login-error {
+  @apply text-red-500 text-sm text-center mb-4;
+}
+
+.login-form {
+  @apply space-y-4;
+}
+
+.login-input {
+  @apply w-full px-4 py-2 border border-gray-300 rounded-md text-sm;
+}
+
+.login-button {
+  @apply w-full bg-black text-white py-2 rounded-md text-sm hover:bg-gray-900 transition;
+}
+
+.login-divider {
+  @apply text-center my-4 text-gray-500 text-sm;
+}
+
+.google-button {
+  @apply w-full bg-blue-500 text-white py-2 rounded-md text-sm hover:bg-blue-600 transition;
+}
+
+.login-footer {
+  @apply text-sm text-center text-gray-600 mt-6;
+}
+
+.signup-link {
+  @apply text-black underline;
+}
