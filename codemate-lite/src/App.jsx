@@ -6,8 +6,8 @@ import SignupPage from "./components/pages/SignupPage";
 import CreateAccountPage from "./components/pages/CreateAccountPage";
 import GoogleCallback from "./components/pages/GoogleCallback";
 
-// ✅ Add this import
 import DashboardLayout from "./components/dashboard/DashboardLayout";
+import PrivateRoute from "./components/dashboard/PrivateRoute"; // ✅ This protects the route
 
 function App() {
   return (
@@ -18,9 +18,16 @@ function App() {
       <Route path="/signup" element={<SignupPage />} />
       <Route path="/create-account" element={<CreateAccountPage />} />
       <Route path="/auth/google/callback" element={<GoogleCallback />} />
-      
-      {/* ✅ Fixes your issue */}
-      <Route path="/dashboard" element={<DashboardLayout />} />
+
+      {/* 🔒 Protected route */}
+      <Route
+        path="/dashboard"
+        element={
+          <PrivateRoute>
+            <DashboardLayout />
+          </PrivateRoute>
+        }
+      />
     </Routes>
   );
 }
