@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Socket.IO Test</title>
+  <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+</head>
+<body>
+  <h2>Simple Socket.IO Chat Test</h2>
+
+  <input type="text" id="senderId" placeholder="Sender ID" />
+  <input type="text" id="receiverId" placeholder="Receiver ID" />
+  <input type="text" id="messageInput" placeholder="Type a message" />
+  <button onclick="sendMessage()">Send</button>
+
+  <div id="messages"></div>
+
+  <script>
+    const socket = io("http://localhost:5000");
+
+    // Listen for incoming messages
+  socket.on("receiveMessage", (data) => {
+  const msgDiv = document.getElementById("messages");
+
+  const sender = data?.senderId || "Unknown";
+  const text = data?.text || "No message";
+
+  const messageElement = document.createElement("p");
+  messageElement.textContent = `From ${sender}: ${text}`;
+  msgDiv.appendChild(messageElement);
+});
+
+
+    function sendMessage() {
+      const senderId = document.getElementById("senderId").value;
+      const receiverId = document.getElementById("receiverId").value;
+      const text = document.getElementById("messageInput").value;
+
+      socket.emit("sendMessage", {
+        senderId,
+        receiverId,
+        text
+      });
+    }
+  </script>
+</body>
+</html>
